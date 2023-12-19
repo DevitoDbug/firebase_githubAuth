@@ -1,5 +1,7 @@
 import { signInWithPopup, GithubAuthProvider } from "firebase/auth";
 import { auth } from "../firebase";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 //We want to sign in with github
 
@@ -14,18 +16,21 @@ import { auth } from "../firebase";
 // };
 
 const Login = () => {
+  const userContext = useContext(AuthContext);
   const handleClick = async (e) => {
     e.preventDefault();
 
     const provider = new GithubAuthProvider();
     const result = await signInWithPopup(auth, provider);
-    console.log({
-      email: result.user.email,
-      uid: result.user.uid,
-      photoURL: result.user.photoURL,
-      displayName: result.user.displayName,
-    });
+    // console.log({
+    //   email: result.user.email,
+    //   uid: result.user.uid,
+    //   photoURL: result.user.photoURL,
+    //   displayName: result.user.displayName,
+    // });
   };
+
+  console.log(userContext);
   return (
     <form>
       <button onClick={handleClick}>Login with Github</button>
