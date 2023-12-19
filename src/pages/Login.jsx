@@ -22,15 +22,16 @@ const Login = () => {
 
     const provider = new GithubAuthProvider();
     const result = await signInWithPopup(auth, provider);
-    // console.log({
-    //   email: result.user.email,
-    //   uid: result.user.uid,
-    //   photoURL: result.user.photoURL,
-    //   displayName: result.user.displayName,
-    // });
+    console.log({
+      email: result.user.email,
+      uid: result.user.uid,
+      photoURL: result.user.photoURL,
+      nickName: result.user.reloadUserInfo.providerUserInfo[0].screenName,
+      displayName: result.user.displayName,
+    });
   };
 
-  console.log(userContext);
+  //   console.log(userContext);
   return (
     <form>
       <button onClick={handleClick}>Login with Github</button>
